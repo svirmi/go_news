@@ -3,7 +3,6 @@ package router
 import (
 	"fmt"
 	"go_news/news"
-	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -20,17 +19,13 @@ func indexHandler(c *gin.Context) {
 }
 
 func searchHandler(c *gin.Context) {
-
 	categoryName := c.Param("category")
-	log.Println("we're in searchHandler, category: ", categoryName)
-
 	news.SearchFor(categoryName)
 
-	c.String(http.StatusOK, "Search for %s category is intialized", categoryName)
+	c.String(http.StatusOK, "Search for %s category ", categoryName)
 }
 
 func resultHandler(c *gin.Context) {
-
 	categoryName := c.Param("category")
 	topics := news.ResultFor(categoryName)
 
@@ -41,7 +36,6 @@ func resultHandler(c *gin.Context) {
 }
 
 func resetHandler(c *gin.Context) {
-
 	news.ResetArchive()
-	c.String(http.StatusOK, "The archive is emptied successfully!")
+	c.String(http.StatusOK, "The archive has been emptied successfully.")
 }
