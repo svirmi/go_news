@@ -4,28 +4,22 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 )
 
-func getSourcesFor(category string) []Source {
-
+func getSources(category string) []Source {
 	fmt.Println("we are in getSources with category:", category)
 	body := getRequest(sourceURL(category))
-	fmt.Println("body: ", string(body))
 
 	var sourceAPI sourceAPIResponse
 	json.Unmarshal(body, &sourceAPI)
 
 	x := sourceAPI.Sources
-	fmt.Println("sourceApi.Sources: ", x)
 
 	return x
 }
 
 func getLatest(sources []Source) []Topic {
-
-	log.Println("we are in getTopics with sources:", sources)
 	var topics []Topic
 
 	for _, source := range sources {
@@ -41,23 +35,20 @@ func getLatest(sources []Source) []Topic {
 }
 
 func getRequest(url string) []byte {
-
 	res, err := http.Get(url)
 	if err != nil {
-		fmt.Println("Error! Cannot get sources!")
+		fmt.Println("Cannot get sources")
 		panic(err)
 	}
 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		panic(err)
-
 	}
 
 	defer res.Body.Close()
 
 	return body
-
 }
 
 func sourceURL(category string) string {

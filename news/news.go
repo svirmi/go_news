@@ -8,13 +8,11 @@ var (
 )
 
 func init() {
-
 	searchClause = make(chan (string))
 	returnClause = make(chan (string))
 
 	reset = make(chan bool)
 	result = make(chan []Topic)
-
 }
 
 //SearchFor adds category to searchClose channel (see CollectNews)
@@ -33,7 +31,6 @@ func ResetArchive() {
 	reset <- true
 }
 
-
 //CollectNews loop of the main functionality of archive
 func (a Archive) CollectNews() {
 	for {
@@ -46,5 +43,4 @@ func (a Archive) CollectNews() {
 			a.resetData()
 		}
 	}
-
 }
