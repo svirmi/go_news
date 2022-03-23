@@ -33,7 +33,7 @@ type Archive map[string][]Topic
 
 //NewArchive is a factory for Archive type
 func NewArchive() Archive {
-	fmt.Println("Creating new archive!")
+	fmt.Println("Create new archive.")
 	return make(Archive)
 }
 
@@ -45,16 +45,11 @@ func (a Archive) resetData() {
 	for c := range a {
 		delete(a, c)
 	}
-	log.Println("The archive is emptied!")
+	log.Println("Archive is clean.")
 }
 
 func (a Archive) collectNews(category string) {
-
-	log.Println("collectNews:: we're in archive, collect! categoty: ", category)
-	sources := getSourcesFor(category)
-	log.Println("collectNews:: searching for topicks at sources: ",sources)
+	sources := getSources(category)
 	topics := getLatest(sources)
-
 	a[category] = topics
-	log.Printf("The news for %s category are collecrted and stored.\n", category)
 }
