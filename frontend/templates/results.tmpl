@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Go news</title>
-</head>
-<body>
+<html>
     {{ range $topic := .topics }}
     <h1>{{ .Title }}</h1>
     <h2>{{ .Author }}</h2>
     <p>{{ .Desc }}</p>
     <a href="{{.URL}}">link</a>
     {{ end }}
-</body>
 </html>
