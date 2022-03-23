@@ -1,2 +1,3 @@
 # go_news
-Study project in go, using NewsAPI. We'll grab news of some current category. Contribution to: https://github.com/NikitaSmall/grabber
+Go and NewsAPI. We grab news for some defined category. 
+Contribution to: https://github.com/NikitaSmall/grabber
