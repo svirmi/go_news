@@ -1,0 +1,8 @@
+<div>
+    {{ range $topic := .topics }}
+    <h3>{{ .Title }}</h3>
+    <h4>{{ .Author }}</h4>
+    <p>{{ .Desc }}</p>
+    <a href="{{.URL}}">link</a>
+    {{ end }}
+</div>
