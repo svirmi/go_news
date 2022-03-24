@@ -6,12 +6,14 @@ import (
 
 //New engine pointer
 func New() *gin.Engine {
-	r := gin.Default()
+	router := gin.Default()
 
-	r.GET("/", indexHandler)
-	r.GET("/search/:category", searchHandler)
-	r.GET("/result/:category", resultHandler)
-	r.GET("/reset", resetHandler)
+	router.LoadHTMLGlob("frontend/templates/*.tmpl")
+	router.Static("/static", "./frontend/static")
 
-	return r
+	router.GET("/", indexHandler)
+	router.GET("/search/:category", searchHandler)
+	router.GET("/reset", resetHandler)
+
+	return router
 }

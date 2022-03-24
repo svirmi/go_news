@@ -1,7 +1,6 @@
 package router
 
 import (
-	"fmt"
 	"go_news/news"
 	"net/http"
 
@@ -9,30 +8,23 @@ import (
 )
 
 //The Greeting Message
-const greetingMessage = `Welcome to the Grapper app!
-* This app allow you to search news for some topic.
-* Hit /search/technology and then his /result/technology as an example
-`
+const greetingMessage = ``
 
 func indexHandler(c *gin.Context) {
-	c.String(http.StatusOK, greetingMessage)
+	c.HTML(http.StatusOK, "index.tmpl", gin.H{
+		"title" : "Go news!",
+	})
 }
 
 func searchHandler(c *gin.Context) {
 	categoryName := c.Param("category")
 	news.SearchFor(categoryName)
 
-	c.String(http.StatusOK, "Search for %s category ", categoryName)
-}
-
-func resultHandler(c *gin.Context) {
-	categoryName := c.Param("category")
 	topics := news.ResultFor(categoryName)
 
-	fmt.Println("category: ", categoryName)
-	fmt.Println("topics: ", topics)
-
-	c.JSON(http.StatusOK, topics)
+	c.HTML(http.StatusOK, "results.tmpl", gin.H{
+		"topics": topics,
+	})
 }
 
 func resetHandler(c *gin.Context) {
