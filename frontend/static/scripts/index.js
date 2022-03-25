@@ -8,7 +8,6 @@ window.onload = () => {
   go.addEventListener("click", () => {
     fetch(`/search/${select.value}`, { mode: "no-cors" })
       .then((response) => {
-        debugger;
         if (response.ok) {
           return response.text();
         }
